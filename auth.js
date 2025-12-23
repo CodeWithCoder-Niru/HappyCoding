@@ -23,9 +23,23 @@ document.getElementById("loginBtn").onclick = () => {
   signInWithPopup(auth, provider);
 };
 
-// Redirect AFTER login
-onAuthStateChanged(auth, (user) => {
+// 🔹 Logout button
+document.getElementById("logoutBtn").onclick = () => {
+  signOut(auth).then(() => {
+    document.getElementById("login-container").style.display = "block";
+    document.getElementById("content").style.display = "none";
+  });
+};
+
+// 🔹 Auth state listener
+onAuthStateChanged(auth, user => {
   if (user) {
     window.location.href = "https://github.com/Niranjan123-12/HappyCoding";
+    document.getElementById("login-container").style.display = "none";
+    document.getElementById("content").style.display = "block";
+  } else {
+    // User is not logged in → show login screen
+    document.getElementById("login-container").style.display = "block";
+    document.getElementById("content").style.display = "none";
   }
 });
