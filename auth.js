@@ -26,6 +26,6 @@ document.getElementById("loginBtn").onclick = () => {
 // Redirect AFTER login
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    window.location.href = "dashboard.html";
+    window.location.href = "https://github.com/Niranjan123-12/HappyCoding";
   }
 });
