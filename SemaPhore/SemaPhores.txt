@@ -1,0 +1,26 @@
+A semaphore is a synchronization method used in operating systems to manage access to
+shared resources in a multi-process or multi-threaded environment.
+
+Semaphores can be classified into two main types:
+1. Binary Semaphore: A binary semaphore can only take the values 0 and 1.
+It is used to manage access to a single resource, effectively acting as a lock.
+
+2. Counting Semaphore: A counting semaphore can take non-negative integer values.
+It is used to manage access to a resource pool with a limited number of instances.
+
+
+Semaphores help prevent race conditions and ensure proper coordination between processes.
+
+Controls entry into the critical section.
+Maintains a counter representing available resources.
+Ensures mutual exclusion among processes.
+Can block and wake up processes during execution.
+Widely used in concurrent programming.
+
+Mutex
+A mutex is an object.
+Mutex works upon the locking mechanism.
+Operations on mutex: Lock & Unlock
+Mutex does not have any subtypes.
+A mutex can only be modified by the process that is requesting or releasing a resource.
+If the mutex is locked then the process needs to wait in the process queue and mutex can only be accessed once the lock is released.

@@ -1,0 +1,101 @@
+| Memory Area       | Purpose                         | Lifetime       |  Access |
+| ----------------- | ------------------------------- | -------------- | ------- |
+| Stack             | Local variables, function calls | Automatic      | Read/Write |
+| Heap              | Dynamically allocated memory    | Manual         | Read/Write |
+| Static/Global     | Global & static variables       | Entire program | Read/Write |
+| Code/Text Segment | Program instructions            | Entire program | Read-only |
+
+
+    Higher Address
++------------------------+
+|        Stack           |
+| Local variables        |
+| Function parameters    |
+| Function calls         |
++------------------------+
+|           ↓            |
+|                        |
+|           ↑            |
++------------------------+
+|        Heap            |
+| new / malloc           |
+| Dynamic objects        |
++------------------------+
+| BSS                    |
+| Uninitialized globals  |
+| static variables       |
++------------------------+
+| Data Segment           |
+| Initialized globals    |
+| static variables       |
++------------------------+
+| Text / Code            |
+| Program instructions   |
++------------------------+
+    Lower Address
+
+### Stack
+The stack is a region of memory that stores local variables and function call information. 
+
+Stack Characteristics
+Advantages
+    Fast allocation/deallocation
+    Automatic cleanup
+    Cache friendly
+Limitations
+    Small size
+    Cannot control lifetime beyond scope
+
+Each function call creates a stack frame containing:
+    Local variables
+    Return address
+    Function parameters
+
+### Heap
+Heap memory is manually managed.
+
+Used when:
+    Size is unknown at compile time
+    Objects need longer lifetime
+    Large memory allocation required
+
+Difference Between Stack vs Heap
+| Feature       | Stack       | Heap                  |
+| ------------- | ----------- | --------------------- |
+| Allocation    | Automatic   | Manual                |
+| Speed         | Fast        | Slower                |
+| Size          | Limited     | Large                 |
+| Lifetime      | Scope-based | Programmer controlled |
+| Fragmentation | No          | Possible              |
+
+
+### Why RAII Is Powerful
+    It gives:
+    automatic cleanup
+    exception safety
+    no manual delete/free
+    deterministic destruction
+    fewer leaks
+
+### Most Important Modern RAII Classes
+| Resource       | RAII Type         |
+| -------------- | ----------------- |
+| Dynamic memory | `std::unique_ptr` |
+| Shared memory  | `std::shared_ptr` |
+| Dynamic arrays | `std::vector`     |
+| Strings        | `std::string`     |
+| File handling  | `std::ifstream`   |
+| Mutex locking  | `std::lock_guard` |
+
+
+### One-Line Summary
+    RAII is the C++ technique of managing resources through object lifetime and automatic destruction.
+
+### How would you detect memory leaks?
+    1. Use tools
+        Linux: Valgrind
+        QNX
+        Clang/GCC: AddressSanitizer
+    2. Use IDE/debugger tools
+    3. Code review patterns
+    4. Prefer RAII to avoid leaks
